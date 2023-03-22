@@ -14,15 +14,27 @@ namespace Test
         static void Main(string[] args)
         {
             Usuarios User = new Usuarios();
-            User.NombreCompleto = "Marvin Mejia";
-            User.Correo = "srgmejia@icloud.com";
-            User.UserName= "mmejia";
-            User.Password = Encoding.UTF8.GetBytes("123");
+            User.IdUsuario = 0;
+            User.NombreCompleto = "Antonio Mejia";
+            User.Correo = "srx.alslsd.com";
+            User.UserName = "alslsls";
+           User.Password = Encoding.UTF8.GetBytes("123");
             User.IdRol = 1;
-            User.IdUsuarioRegistra= 1;
+            //User.IdUsuarioActualiza = 1;
+            User.IdUsuarioRegistra = 1;
 
-            DAL_Usuarios.Insertar(User);
-            
+
+
+            //DAL_Usuarios.Insertar(User);
+            DataTable dt = new DataTable();
+            dt = DAL_Usuarios.Select(User);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Console.WriteLine(dt.Rows[i][0].ToString() +"\t"+dt.Rows[i][1].ToString() +"\n");
+            }
+            Console.ReadLine();
+
 
         }
     }
