@@ -45,7 +45,6 @@ namespace DAL
             sqlConnection.Dispose();
             return ID;
         }
-
         public static DataTable Select(Usuarios Entidad)
         {
             SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
@@ -61,8 +60,5 @@ namespace DAL
             da.Dispose();
             return dt;
         }
-
-
-
     }
 }
