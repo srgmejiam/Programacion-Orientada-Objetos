@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL_Formularios.cs" />
+    <Compile Include="BL_Permisos.cs" />
+    <Compile Include="BL_Roles.cs" />
+    <Compile Include="BL_RolFormulario.cs" />
+    <Compile Include="BL_RolPermisos.cs" />
+    <Compile Include="BL_Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

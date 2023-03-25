@@ -32,7 +32,7 @@ namespace DAL
             SqlCommand cmd = new SqlCommand("ActualizarFormulario", sqlConnection);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@IdFormulario", Entidad.IdFormulario);
-            cmd.Parameters.AddWithValue("@NombreCompleto", Entidad.Formulario);
+            cmd.Parameters.AddWithValue("@Formulario", Entidad.Formulario);
             cmd.Parameters.AddWithValue("@IdUsuarioActualiza", Entidad.IdUsuarioActualiza);
             int ID = Convert.ToInt32(cmd.ExecuteScalar());
             sqlConnection.Close();
@@ -60,7 +60,7 @@ namespace DAL
             {
                 SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
                 sqlConnection.Open();
-                SqlCommand Cmd = new SqlCommand("AnularUsuario", sqlConnection);
+                SqlCommand Cmd = new SqlCommand("AnularFormulario", sqlConnection);
                 Cmd.CommandType = CommandType.StoredProcedure;
                 Cmd.Parameters.AddWithValue("@IdFormulario", Entidad.IdFormulario);
                 Cmd.Parameters.AddWithValue("@IdUsuarioActualizar", Entidad.IdUsuarioActualiza);

@@ -45,6 +45,19 @@ namespace DAL
             sqlConnection.Dispose();
             return ID;
         }
+        public static int Anular(Usuarios Entidad)
+        {
+            SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("AnularUsuario", sqlConnection);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@IdUsuario", Entidad.IdUsuario);
+            cmd.Parameters.AddWithValue("@IdUsuarioActualiza", Entidad.IdUsuarioActualiza);
+            int ID = Convert.ToInt32(cmd.ExecuteScalar());
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+            return ID;
+        }
         public static DataTable Select(Usuarios Entidad)
         {
             SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
@@ -59,6 +72,47 @@ namespace DAL
             sqlConnection.Dispose();
             da.Dispose();
             return dt;
+        }    
+        public static int Bloqueo(Usuarios Entidad)
+        {
+            SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("BloquearUsuario", sqlConnection);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@IdUsuario", Entidad.IdUsuario);
+            cmd.Parameters.AddWithValue("@IdUsuarioActualiza", Entidad.IdUsuarioActualiza);
+            int ID = Convert.ToInt32(cmd.ExecuteScalar());
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+            return ID;
         }
+        public static int ActualizarPassword(Usuarios Entidad)
+        {
+            SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("ActualizarPassword", sqlConnection);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@IdUsuario", Entidad.IdUsuario);
+            cmd.Parameters.AddWithValue("@Password", Entidad.Password);
+            cmd.Parameters.AddWithValue("@IdUsuarioActualiza", Entidad.IdUsuarioActualiza);
+            int ID = Convert.ToInt32(cmd.ExecuteScalar());
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+            return ID;
+        }
+        public static int SumarIntentosFallidos(Usuarios Entidad)
+        {
+            SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("SumarIntentosFallidos", sqlConnection);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@IdUsuario", Entidad.IdUsuario);
+            cmd.Parameters.AddWithValue("@IdUsuarioActualiza", Entidad.IdUsuarioActualiza);
+            int ID = Convert.ToInt32(cmd.ExecuteScalar());
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+            return ID;
+        }
+
     }
 }
