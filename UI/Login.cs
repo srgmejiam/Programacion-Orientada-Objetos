@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BL;
+using EL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,10 +37,25 @@ namespace UI
                 MessageBox.Show("Ingrese la Contraseña", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            if (!BL_Usuarios.ValidarUsuario(txtUsuario.Text))
+            {
+                MessageBox.Show("Credenciales Incorrectas", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            byte[] Password = UTF8Encoding.UTF8.GetBytes(txtPassword.Text);
+            if (!BL_Usuarios.ValidarCredenciales(txtUsuario.Text, Password))
+            {
+                MessageBox.Show("Credenciales Incorrectas", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            VariableGlobales.IdUsuarioGl = Convert.ToInt32(BL_Usuarios.Select_x_UserName(txtUsuario.Text).Rows[0][0].ToString());
 
 
 
 
+            Principal principal = new Principal();
+            principal.Show();
 
             return true;
         }
@@ -51,12 +68,13 @@ namespace UI
         }
         private void ckVerPassword_CheckedChanged(object sender, EventArgs e)
         {
-            string pass = txtPassword.Text;
             if (ckVerPassword.Checked)
             {
                 txtPassword.UseSystemPasswordChar = false;
-                txtPassword.Text = pass;
+                return;
             }
+            txtPassword.UseSystemPasswordChar = true;
+            return;
         }
         #endregion
 

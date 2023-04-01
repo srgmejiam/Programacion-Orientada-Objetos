@@ -34,5 +34,17 @@ namespace BL
         {
             return DAL_Usuarios.SumarIntentosFallidos(Entidad);
         }
+        public static bool ValidarUsuario(string UserName)
+        {
+            return DAL_Usuarios.ValidarUsuario(UserName);
+        }
+        public static bool ValidarCredenciales(string UserName, byte[] Password)
+        {
+            return DAL_Usuarios.ValidarCredenciales(UserName, Password);
+        }
+        public static DataTable Select_x_UserName(string UserName)
+        {
+            return DAL_Usuarios.Select_x_UserName(UserName);
+        }
     }
 }

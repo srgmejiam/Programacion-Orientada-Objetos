@@ -113,6 +113,46 @@ namespace DAL
             sqlConnection.Dispose();
             return ID;
         }
+        public static bool ValidarUsuario(string UserName)
+        {
+            SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("ValidarUsuario", sqlConnection);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@UserName", UserName);
+            int ID = Convert.ToInt32(cmd.ExecuteScalar());
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+            return ID > 0;
+        }
+        public static bool ValidarCredenciales(string UserName, byte[] Password)
+        {
+            SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("ValidarCredenciales", sqlConnection);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@UserName", UserName);
+            cmd.Parameters.AddWithValue("@Password", Password);
+            int ID = Convert.ToInt32(cmd.ExecuteScalar());
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+            return ID > 0;
+        }
+        public static DataTable Select_x_UserName(string UserName)
+        {
+            SqlConnection sqlConnection = new SqlConnection(Conexion.ConexionString());
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("Select_x_UserName", sqlConnection);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@UserName", UserName);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            da.Dispose();
+            sqlConnection.Close();
+            sqlConnection.Dispose();
+            return dt;
+        }
 
     }
 }

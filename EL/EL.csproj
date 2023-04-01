@@ -48,6 +48,7 @@
     <Compile Include="RolFormulario.cs" />
     <Compile Include="RolPermisos.cs" />
     <Compile Include="Usuarios.cs" />
+    <Compile Include="VariableGlobales.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
